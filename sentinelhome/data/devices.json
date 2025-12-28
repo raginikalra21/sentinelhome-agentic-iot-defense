@@ -1,0 +1,73 @@
+[
+  {
+    "ip": "192.168.31.1",
+    "mac": "98:87:4c:0c:1b:b1",
+    "vendor": "SERVERCOM (INDIA) PRIVATE LIMITED",
+    "open_ports": [
+      80,
+      443
+    ],
+    "device_type": "Smart Appliance",
+    "risk_score": 10,
+    "risk_level": "LOW",
+    "risk_reasons": [
+      "Known vendor",
+      "Low exposure"
+    ]
+  },
+  {
+    "ip": "192.168.31.11",
+    "mac": "e8:65:d4:56:8d:c5",
+    "vendor": "Tenda Technology Co.,Ltd.Dongguan branch",
+    "open_ports": [],
+    "device_type": "Unknown Device",
+    "risk_score": 10,
+    "risk_level": "LOW",
+    "risk_reasons": [
+      "Known vendor",
+      "Low exposure"
+    ]
+  },
+  {
+    "ip": "192.168.31.55",
+    "mac": "e8:65:d4:56:8d:c5",
+    "vendor": "Tenda Technology Co.,Ltd.Dongguan branch",
+    "open_ports": [
+      80,
+      443
+    ],
+    "device_type": "Smart Appliance",
+    "risk_score": 10,
+    "risk_level": "LOW",
+    "risk_reasons": [
+      "Known vendor",
+      "Low exposure"
+    ]
+  },
+  {
+    "ip": "192.168.31.130",
+    "mac": "88:bf:e4:c3:bb:4f",
+    "vendor": "HUAWEI TECHNOLOGIES CO.,LTD",
+    "open_ports": [],
+    "device_type": "Unknown Device",
+    "risk_score": 10,
+    "risk_level": "LOW",
+    "risk_reasons": [
+      "Known vendor",
+      "Low exposure"
+    ]
+  },
+  {
+    "ip": "192.168.31.168",
+    "mac": "46:16:15:7e:a3:16",
+    "vendor": "Unknown Vendor",
+    "open_ports": [],
+    "device_type": "Unknown Device",
+    "risk_score": 25,
+    "risk_level": "LOW",
+    "risk_reasons": [
+      "Untrusted vendor: Unknown Vendor",
+      "Low exposure"
+    ]
+  }
+]

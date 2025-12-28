@@ -1,6 +1,9 @@
 import scapy.all as scapy
 import socket
 import json
+from sentinelhome.agents.discovery.device_fingerprint import get_vendor
+
+COMMON_IOT_PORTS = [22, 23, 80, 443, 554, 1883, 8883]
 
 
 def get_local_subnet():
@@ -18,7 +21,7 @@ def arp_scan(subnet):
     answered = scapy.srp(packet, timeout=2, verbose=False)[0]
 
     devices = []
-    for sent, received in answered:
+    for _, received in answered:
         devices.append({
             "ip": received.psrc,
             "mac": received.hwsrc
@@ -27,11 +30,60 @@ def arp_scan(subnet):
     return devices
 
 
+def port_scan(ip):
+    open_ports = []
+    for port in COMMON_IOT_PORTS:
+        pkt = scapy.IP(dst=ip) / scapy.TCP(dport=port, flags="S")
+        resp = scapy.sr1(pkt, timeout=0.5, verbose=False)
+
+        if resp and resp.haslayer(scapy.TCP):
+            if resp.getlayer(scapy.TCP).flags == 0x12:
+                open_ports.append(port)
+                scapy.sr(
+                    scapy.IP(dst=ip)/scapy.TCP(dport=port, flags="R"),
+                    timeout=0.5,
+                    verbose=False
+                )
+
+    return open_ports
+
+
+def infer_device_type(vendor, ports):
+    vendor = vendor.lower()
+
+    if 554 in ports:
+        return "IP Camera"
+    if "tp-link" in vendor or "netgear" in vendor:
+        return "Router / Network Device"
+    if 1883 in ports or 8883 in ports:
+        return "IoT Sensor / Smart Device"
+    if 80 in ports or 443 in ports:
+        return "Smart Appliance"
+
+    return "Unknown Device"
+
+
 if __name__ == "__main__":
     subnet = get_local_subnet()
     print(f"[+] Scanning subnet: {subnet}")
 
-    devices = arp_scan(subnet)
+    raw_devices = arp_scan(subnet)
+    final_devices = []
 
-    print("[+] Devices Found:")
-    print(json.dumps(devices, indent=2))
+    for device in raw_devices:
+        vendor = get_vendor(device["mac"])
+        ports = port_scan(device["ip"])
+        device_type = infer_device_type(vendor, ports)
+
+        final_devices.append({
+            "ip": device["ip"],
+            "mac": device["mac"],
+            "vendor": vendor,
+            "open_ports": ports,
+            "device_type": device_type
+        })
+
+    print(json.dumps(final_devices, indent=2))
+
+    with open("sentinelhome/data/devices.json", "w") as f:
+        json.dump(final_devices, f, indent=2)

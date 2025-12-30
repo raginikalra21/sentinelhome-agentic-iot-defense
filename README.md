@@ -41,6 +41,7 @@ All processing happens **locally at the edge**, ensuring privacy and low latency
 
 ## 🧠 System Architecture
 
+```md
 ```mermaid
 flowchart LR
     A["Home IoT Devices\n(Camera, Router, TV, Bulbs)"] --> B[Device Discovery Agent]

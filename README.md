@@ -61,11 +61,7 @@ flowchart LR
 
     H --> I[Optional Web Dashboard]
 
-Home Network
-|
-[ SentinelHome Edge System ]
-|
-| Discovery | Risk Profiling | Deception | Response |
+
 
 
 

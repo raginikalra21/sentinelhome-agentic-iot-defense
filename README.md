@@ -43,13 +43,14 @@ All processing happens **locally at the edge**, ensuring privacy and low latency
 
 ```mermaid
 flowchart LR
-    A[Home IoT Devices<br/>(Camera, Router, TV, Bulbs)] --> B[Device Discovery Agent]
+    A["Home IoT Devices\n(Camera, Router, TV, Bulbs)"] --> B[Device Discovery Agent]
     B --> C[Risk Profiling Engine]
 
     A --> D[Deception Layer]
     D --> D1[Fake IP Camera]
     D --> D2[Fake Router Admin Panel]
     D --> D3[Honeytokens]
+
 
     D --> E[Trap Monitor Agent]
     E --> F[Autonomous Response Agent]

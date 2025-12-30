@@ -62,7 +62,7 @@ flowchart LR
     H --> I[Optional Web Dashboard]
 
 
-
+---
 
 ## 🔍 Key Features
 

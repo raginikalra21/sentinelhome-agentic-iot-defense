@@ -51,7 +51,6 @@ flowchart LR
     D --> D2[Fake Router Admin Panel]
     D --> D3[Honeytokens]
 
-
     D --> E[Trap Monitor Agent]
     E --> F[Autonomous Response Agent]
     F --> G[Firewall / IP Blocking]
@@ -61,6 +60,12 @@ flowchart LR
     F --> H
 
     H --> I[Optional Web Dashboard]
+
+
+
+```md
+
+
 
 
 

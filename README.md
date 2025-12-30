@@ -103,6 +103,23 @@ flowchart LR
 - **Edge-based execution** (privacy-preserving)
 
 ---
+## 📊 Local Dashboard (Visibility Layer)
+
+SentinelHome includes a lightweight **local web dashboard** for real-time visibility into system behavior.
+
+The dashboard displays:
+- Discovered IoT devices with risk levels (LOW / MEDIUM / HIGH)
+- Deception alerts triggered by honeypot interactions
+- Autonomous actions taken by the system
+
+> The dashboard is **not** the security system itself.  
+> All detection, deception, and response logic runs autonomously at the network edge.
+
+### Run Dashboard
+```bash
+uvicorn sentinelhome.dashboard.app:app --reload
+OPEN IN BROWSER:
+http://127.0.0.1:8000/ui
 
 ## 🧪 Demo Workflow
 
